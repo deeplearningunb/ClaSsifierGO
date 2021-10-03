@@ -9,9 +9,9 @@ export const Image = styled.img`
 `;
 
 export const Button = styled.button`
-  background-color: Transparent;
-  height: 28px;
-  border: 1px solid black;
+  background-color: rgb(117,136,236);
+  height: 32px;
+  border: none;
   cursor: pointer;
 `;
 
@@ -20,12 +20,20 @@ export const Page = styled.div`
 
 export const InputDiv = styled.div`
   width: min-content;
+  border: 18px solid rgb(117,136,236);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border-radius: 12px;
   padding: 36px;
 `;
 
 export const ImageDiv = styled.div`
+`;
+
+export const P = styled.p`
+  text-align: center;
+  letter-spacing: 3px;
+  font-size: 26px;
+  margin-top: 0;
 `;

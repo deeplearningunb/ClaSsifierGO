@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import Navbar from '../../Components/Navbar';
 import {
-  Page, Input, Image, Button, InputDiv, ImageDiv,
+  Page, Input, Image, Button, InputDiv, ImageDiv, P,
 } from './Style';
+import placeholderImage from '../../Assets/Images/placeholder.jpg';
 
 const Home = () => {
   const [baseImage, setBaseImage] = useState();
@@ -33,10 +34,10 @@ const Home = () => {
     <Page>
       <Navbar />
       <InputDiv>
+        <P>SUDOKUSOLVER</P>
         <ImageDiv>
           <Image
-            src={baseImage}
-            display={baseImage ? 'block' : 'none'}
+            src={baseImage ? baseImage : placeholderImage}
             height="500px"
             width="800px"
           />
