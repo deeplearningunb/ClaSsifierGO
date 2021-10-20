@@ -1,6 +1,6 @@
-# SudokuSolver
+# ClaSsifierGO
 
-O projeto consiste em utilizar redes neurais convolucionais para interpretar o popular jogo sudoku e soluciona-lo
+O projeto consiste em utilizar redes neurais convolucionais para identificar fases do jogo Counter-Strike.
 
 ## Integrantes
 
