@@ -7,7 +7,7 @@ class Navbar extends Component {
   render() {
     return (
       <Nav>
-        <Logo href="/">SudokuSolver</Logo>
+        {/* <Logo href="/">ClaSsifierGO</Logo> */}
       </Nav>
     );
   }

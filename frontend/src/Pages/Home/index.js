@@ -3,7 +3,7 @@ import Navbar from '../../Components/Navbar';
 import {
   Page, Input, Image, Button, InputDiv, ImageDiv, P,
 } from './Style';
-import placeholderImage from '../../Assets/Images/placeholder.jpg';
+import placeholderImage from '../../Assets/Images/placeholder.png';
 
 const Home = () => {
   const [baseImage, setBaseImage] = useState();
@@ -32,9 +32,9 @@ const Home = () => {
 
   return (
     <Page>
-      <Navbar />
+      {/* <Navbar /> */}
       <InputDiv>
-        <P>SUDOKUSOLVER</P>
+        <P>ClaSsifierGO</P>
         <ImageDiv>
           <Image
             src={baseImage ? baseImage : placeholderImage}

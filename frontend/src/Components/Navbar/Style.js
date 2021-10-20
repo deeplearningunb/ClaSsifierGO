@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const Nav = styled.div`
-  background-color: black;
-  padding: 12px;
-  margin-bottom: 26px;
+  padding: 10px;
+  margin-bottom: 0;
 `;
 
 export const Logo = styled.a`
