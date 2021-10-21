@@ -25,7 +25,7 @@ export const InputDiv = styled.div`
   box-shadow: 10px 10px 5px gray;
   width: min-content;
   border: 10px solid #ffffff;
-  margin: 20px auto;
+  margin: 64px auto;
   display: flex;
   flex-direction: column;
   border-radius: 12px;

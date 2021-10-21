@@ -1,26 +1,26 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from "react";
 //import Navbar from '../../Components/Navbar';
-import {
-  Page, Input, Image, Button, InputDiv, ImageDiv, P,
-} from './Style';
-import placeholderImage from '../../Assets/Images/placeholder.png';
+import { Page, Input, Image, Button, InputDiv, ImageDiv, P } from "./Style";
+import placeholderImage from "../../Assets/Images/placeholder.png";
+import axios from "axios";
 
 const Home = () => {
   const [baseImage, setBaseImage] = useState();
   const fileTest = useRef(null);
 
-  const convertBase64 = (file) => new Promise((resolve, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
+  const convertBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
 
-    fileReader.onload = () => {
-      resolve(fileReader.result);
-    };
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
 
-    fileReader.onerror = (error) => {
-      reject(error);
-    };
-  });
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
 
   const uploadImage = async (e) => {
     const file = e?.target?.files[0];
@@ -34,7 +34,9 @@ const Home = () => {
     <Page>
       {/* <Navbar /> */}
       <InputDiv>
-        <P>C<small>la</small>S<small>sifier</small>GO</P>
+        <P>
+          C<small>la</small>S<small>sifier</small>GO
+        </P>
         <ImageDiv>
           <Image
             src={baseImage ? baseImage : placeholderImage}
@@ -48,7 +50,17 @@ const Home = () => {
           ref={fileTest}
           onChange={(e) => uploadImage(e)}
         />
-        <Button>Enviar</Button>
+        <Button
+          onClick={() => {
+            axios
+              .post("http://127.0.0.1:5000/image", {
+                image: baseImage,
+              })
+              .then((r) => console.log(r));
+          }}
+        >
+          Enviar
+        </Button>
       </InputDiv>
     </Page>
   );
