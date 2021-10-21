@@ -14,6 +14,7 @@ export const Button = styled.button`
   height: 32px;
   border: none;
   cursor: pointer;
+  border-radius:5px
 `;
 
 export const Page = styled.div`
@@ -21,7 +22,7 @@ export const Page = styled.div`
 
 export const InputDiv = styled.div`
   background-color: #ffffff;
-  box-shadow: 10px 10px 20px grey;
+  box-shadow: 10px 10px 5px gray;
   width: min-content;
   border: 10px solid #ffffff;
   margin: 20px auto;
@@ -37,6 +38,6 @@ export const ImageDiv = styled.div`
 export const P = styled.p`
   text-align: center;
   letter-spacing: 3px;
-  font-size: 32px;
+  font-size: 42px;
   margin-top: 0;
 `;

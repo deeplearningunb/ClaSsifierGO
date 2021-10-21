@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import Navbar from '../../Components/Navbar';
+//import Navbar from '../../Components/Navbar';
 import {
   Page, Input, Image, Button, InputDiv, ImageDiv, P,
 } from './Style';
@@ -34,7 +34,7 @@ const Home = () => {
     <Page>
       {/* <Navbar /> */}
       <InputDiv>
-        <P>ClaSsifierGO</P>
+        <P>C<small>la</small>S<small>sifier</small>GO</P>
         <ImageDiv>
           <Image
             src={baseImage ? baseImage : placeholderImage}
