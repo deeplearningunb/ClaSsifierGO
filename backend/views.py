@@ -37,15 +37,16 @@ def image_processing():
 
     print(prediction[0])
     result = {
-        'prediction': {
-            "Dust2": str(prediction[0][0]),
-            "Inferno": str(prediction[0][1]),
-            "Mirage": str(prediction[0][2]),
-            "Nuke": str(prediction[0][3]),
-            "Overpass": str(prediction[0][4]),
-            "Train": str(prediction[0][5]),
-            "Vertigo": str(prediction[0][6]),
-        }}
+        'predictions': [
+            {"name":"Dust2", "prediction": str(prediction[0][0])},
+            {"name":"Inferno", "prediction": str(prediction[0][1])},
+            {"name":"Mirage", "prediction": str(prediction[0][2])},
+            {"name":"Nuke", "prediction": str(prediction[0][3])},
+            {"name":"Overpass", "prediction": str(prediction[0][4])},
+            {"name":"Train", "prediction": str(prediction[0][5])},
+            {"name":"Vertigo", "prediction": str(prediction[0][6])},
+        ]
+    }
     response = Response(
         response=json.dumps(result),
         status=200,
