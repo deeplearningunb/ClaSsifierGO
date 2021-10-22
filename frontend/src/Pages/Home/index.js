@@ -47,9 +47,15 @@ const Home = () => {
         </ImageDiv>
         {predictions ? (
           <div>
-            {predictions.map((p) => (
-              <div>
-                <p>{p.name}:{p.prediction}</p>
+            <h2 style={{ color: 'red', fontWeight: 'bold' }}>
+              Resultado:
+              {' '}
+              {(Math.max.apply(Math, predictions.map((p) => parseFloat(p.prediction))) * 100).toFixed(2)}%
+            </h2>
+            <h3>Todos resultados:</h3>
+            {predictions.map((p, idx) => (
+              <div key={idx}>
+                <p>{p.name}: {(parseFloat(p.prediction) * 100).toFixed(2)}%</p>
               </div>
             ))}
           </div>
@@ -69,7 +75,6 @@ const Home = () => {
                 image: baseImage,
               })
               .then((r) => setPredictions(r.data.predictions));
-              console.log(predictions)
           }}
         >
           Enviar
