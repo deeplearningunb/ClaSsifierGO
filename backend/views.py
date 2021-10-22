@@ -1,42 +1,69 @@
 import tensorflow as tf
+import json
+import io
+import PIL
+import base64
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from flask import request, Response
+from tensorflow.keras.models import load_model
+
 
 def index():
-    return "Hello Sudoku!"
+    return "Hello ClaSsifierGO!"
+
 
 def image_processing():
     data = request.get_json()
     if 'image' not in data.keys():
         response = Response(
-                status=400,
-                mimetype='charge_viewlication/json'
-            )
+            status=400,
+            mimetype='charge_viewlication/json'
+        )
         return response
 
-    # model = load_model()
-    # img = decode_img_bytes(data['image'])
-    # result = model.predict(img)
-    # response = Response(
-    #         status=200,
-    #         mimetype='charge_viewlication/json'
-    #
-    #     )
+    data = data["image"].split(',')[1]
+    with open('tmp.txt', 'w') as f:
+        f.write(data)
 
-    return data['image']
+    with open('tmp.txt', 'r') as f:
+        data = f.read().strip()
 
-def decode_img_bytes(img_b64: str) -> tf.Tensor:
-        img = tf.io.decode_image(
-            img_b64, 
-            channels=3,
-            dtype=tf.uint8,
-            expand_animations=False
-        )
-        img = tf.image.resize(img, size=self.img_size)
-        img = tf.ensure_shape(img, (*self.img_size, 3))
-        img = tf.cast(img, tf.float32)
-        return img
+    im = PIL.Image.open(io.BytesIO(base64.b64decode(data)))
+    im.save('dpr.png', 'PNG')
+    model = load_model_tmp()
 
-def load_model():
-    # Load CNN model
-    model = 1
+    image = prepare('dpr.png')
+    prediction = model.predict(image)
+
+    print(prediction[0])
+    result = {
+        'prediction': {
+            "Dust2": str(prediction[0][0]),
+            "Inferno": str(prediction[0][1]),
+            "Mirage": str(prediction[0][2]),
+            "Nuke": str(prediction[0][3]),
+            "Overpass": str(prediction[0][4]),
+            "Train": str(prediction[0][5]),
+            "Vertigo": str(prediction[0][6]),
+        }}
+    response = Response(
+        response=json.dumps(result),
+        status=200,
+        mimetype='charge_viewlication/json'
+    )
+    return response
+
+
+def load_model_tmp():
+    model = load_model("backend/model/model.h5")
     return model
+
+
+def prepare(filepath):
+    IMG_SIZE = 100
+    img = load_img(filepath,
+                   color_mode="rgb",
+                   target_size=(IMG_SIZE, IMG_SIZE))
+    img_array = img_to_array(img) / 255.0
+    img_array = tf.expand_dims(img_array, 0)
+    return img_array
