@@ -29,10 +29,10 @@ def image_processing():
         data = f.read().strip()
 
     im = PIL.Image.open(io.BytesIO(base64.b64decode(data)))
-    im.save('dpr.png', 'PNG')
+    im.save('image.png', 'PNG')
     model = load_model_tmp()
 
-    image = prepare('dpr.png')
+    image = prepare('image.png')
     prediction = model.predict(image)
 
     print(prediction[0])
