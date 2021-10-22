@@ -1,11 +1,12 @@
 import React, { useState, useRef } from "react";
 //import Navbar from '../../Components/Navbar';
 import { Page, Input, Image, Button, InputDiv, ImageDiv, P } from "./Style";
-import placeholderImage from "../../Assets/Images/placeholder.png";
+import placeholderImage from "../../Assets/Images/placeholder.jpeg";
 import axios from "axios";
 
 const Home = () => {
   const [baseImage, setBaseImage] = useState();
+  const [predictions, setPredictions] = useState();
   const fileTest = useRef(null);
 
   const convertBase64 = (file) =>
@@ -44,19 +45,31 @@ const Home = () => {
             width="800px"
           />
         </ImageDiv>
-        <Input
-          accept="image/png, image/jpeg"
-          type="file"
-          ref={fileTest}
-          onChange={(e) => uploadImage(e)}
-        />
+        {predictions ? (
+          <div>
+            {predictions.map((p) => (
+              <div>
+                <p>{p.name}:{p.prediction}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <Input
+            accept="image/png, image/jpeg"
+            type="file"
+            ref={fileTest}
+            onChange={(e) => uploadImage(e)}
+          />
+        )}
+
         <Button
           onClick={() => {
             axios
               .post("http://127.0.0.1:5000/image", {
                 image: baseImage,
               })
-              .then((r) => console.log(r));
+              .then((r) => setPredictions(r.data.predictions));
+              console.log(predictions)
           }}
         >
           Enviar
