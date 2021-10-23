@@ -1,0 +1,9 @@
+FROM python:3.8
+
+WORKDIR /app
+
+COPY backend/ .
+
+RUN pip install flask flask_cors tensorflow pillow
+
+CMD python main.py

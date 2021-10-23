@@ -1,0 +1,11 @@
+FROM node:17
+
+WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY frontend/ .
+
+RUN yarn install
+
+CMD ["yarn", "start"]

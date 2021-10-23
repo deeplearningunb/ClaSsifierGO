@@ -78,7 +78,6 @@ const Home = () => {
                 image: baseImage,
               })
               .then((r) => {
-                console.log(r)
                 setPredictions(r.data.predictions);
                 setWinner(r.data.winner);
 
