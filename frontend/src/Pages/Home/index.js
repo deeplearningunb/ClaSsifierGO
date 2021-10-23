@@ -7,6 +7,7 @@ import axios from "axios";
 const Home = () => {
   const [baseImage, setBaseImage] = useState();
   const [predictions, setPredictions] = useState();
+  const [winner, setWinner] = useState();
   const fileTest = useRef(null);
 
   const convertBase64 = (file) =>
@@ -50,6 +51,8 @@ const Home = () => {
             <h2 style={{ color: 'red', fontWeight: 'bold' }}>
               Resultado:
               {' '}
+              {predictions?.[winner]?.name || "..."}
+              {' '}
               {(Math.max.apply(Math, predictions.map((p) => parseFloat(p.prediction))) * 100).toFixed(2)}%
             </h2>
             <h3>Todos resultados:</h3>
@@ -74,8 +77,13 @@ const Home = () => {
               .post("http://127.0.0.1:5000/image", {
                 image: baseImage,
               })
-              .then((r) => setPredictions(r.data.predictions));
-          }}
+              .then((r) => {
+                console.log(r)
+                setPredictions(r.data.predictions);
+                setWinner(r.data.winner);
+
+              })           
+              }}
         >
           Enviar
         </Button>

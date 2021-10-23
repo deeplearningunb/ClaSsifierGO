@@ -45,7 +45,8 @@ def image_processing():
             # {"name":"Overpass", "prediction": str(prediction[0][4])},
             {"name":"Train", "prediction": str(prediction[0][2])},
             {"name":"Vertigo", "prediction": str(prediction[0][3])},
-        ]
+        ],
+        'winner': list(prediction[0]).index(max(prediction[0]))
     }
     response = Response(
         response=json.dumps(result),
